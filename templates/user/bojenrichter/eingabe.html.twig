@@ -1,0 +1,336 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <style>
+        .parcours input[type=checkbox] {
+            display: none;
+        }
+
+        .parcours label {
+            display: block;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+
+            cursor: pointer;
+            /*position: relative;
+            top: 5px;
+            left: 5px;*/
+            z-index: 1;
+
+            background: orange;
+            border: 1px solid #9b5c00;
+
+        }
+
+        .parcours input[type=checkbox]:checked + label {
+            background: red;
+            border: 1px solid #9b0000;
+            content: "X";
+            text-align: center;
+        }
+
+        .parcours {
+            box-sizing: border-box;
+            position: relative;
+            height: 300px;
+            width: 300px;
+            border: 2px black dotted;
+            /*border-radius: 10px;*/
+            /*background-color: dodgerblue;*/
+        }
+
+        #wkr {
+            margin: 50px auto auto;
+            height: 300px;
+            width: 700px;
+
+        }
+
+        h1#boje {
+            text-align: center;
+            color: white;
+            text-shadow: 0 0 5px black;
+        }
+
+        #hinfahrt {
+            float: left;
+            /*top: 100px;*/
+            /* left: 30%;*/
+        }
+
+        #rueckfahrt {
+            float: right;
+            /* top: 100px;*/
+            /*left: 55%;*/
+        }
+
+        .tor {
+            position: absolute;
+            box-sizing: border-box;
+            height: 32px;
+            width: 80px;
+            /*border: 2px black solid;
+            border-radius: 5px;*/
+        }
+
+        .boje_l {
+            position: absolute;
+            top: 2.5%;
+            left: 2%;
+        }
+
+        .boje_r {
+            position: absolute;
+            top: 2.5%;
+            right: 2%;
+        }
+
+        .s_boje {
+            position: absolute;
+        }
+
+        /*        .s_boje label{
+                    background-color: blue;
+                }*/
+        /*#h_t0{
+            -moz-transform: rotate(-90deg);
+            -ms-transform: rotate(-90deg);
+            -o-transform: rotate(-90deg);
+            -webkit-transform: rotate(-90deg);
+            transform: rotate(-90deg);
+        }*/
+        #sb_l {
+            bottom: 102%;
+            left: 0;
+        }
+
+        #sb_r {
+            bottom: 102%;
+            right: 0;
+        }
+
+        #t5 {
+            bottom: 88.2%; /*94.13% */
+            left: 37.5%;
+        }
+
+        #t4 {
+            bottom: 74%; /*76.48%*/
+            left: 2%;
+        }
+
+        #t3 {
+            bottom: 58.83%;
+            right: 2%;
+        }
+
+        #t2 {
+            bottom: 41.18%;
+            left: 2%;
+        }
+
+        #t1 {
+            bottom: 23.53%;
+            right: 2%;
+        }
+
+        #schikane {
+            position: absolute;
+            bottom: 17.65%; /*17.65%*/
+            left: 13%; /*0*/
+        }
+
+        #t0 {
+
+            left: 40%;
+            bottom: 2%;
+        }
+
+        #beschriftung {
+            position: absolute;
+            left: 10px;
+            bottom: 0;
+            font-weight: bold;
+            /* text-shadow: 0 0 5px white; */
+        }
+
+        /*        #submit{
+                    position: absolute;
+                    top: 450px;
+                }*/
+        #bojenrichter:checked ~ #weiteres {
+            display: block;
+            /*margin: auto;
+            width: 725px;*/
+            /*position: absolute;*/
+            margin-top: 400px;
+            /*text-align: center;*/
+        }
+
+        /*            #weiteres h1 {
+                        text-align: center;
+                    }
+
+                    #weiteres table, #weiteres th, #weiteres td {
+                        text-align: center;
+                    }*/
+
+        /*        #H_T5_l {
+                    background-color: grey;
+                    border-radius: 100%;
+                    position: absolute;
+                    width: 25px;
+                    height: 25px;
+                }*/
+
+        .boje_grau {
+            position: relative;
+            display: block;
+            background-color: grey;
+            border: 1px solid #3c3c3c;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            bottom: inherit;
+            top: 2%;
+            right: inherit;
+            left: inherit;
+        }
+
+        .boje_irrelevant label {
+            background-color: #00ff00;
+            border: 1px solid #009b00;
+        }
+
+        div.bojenfehler {
+            width: 700px;
+        }
+
+        /*.parcours#hinfahrt {
+            background: url("../pictures/parcours/ME.png") no-repeat;
+            background-size: 296px 296px;
+        }*/
+
+
+        button[type=submit],button[type=reset] {
+            padding: 12px;
+            font-size: 15pt;
+            font-weight: bold;
+            margin: 5px;
+        }
+
+        div#wkr_eingabe {
+            min-width: 25vw;
+            max-width: fit-content;
+            position: relative;
+            transform: translateX(-50%);
+            left: 50%;
+        }
+
+
+
+        @media screen and (max-width: 600px) and (orientation: portrait){
+
+            #hinfahrt,#rueckfahrt {
+                float: none;
+                display: block;
+            }
+
+            #rueckfahrt {
+                margin-top: 90px;
+            }
+            #weiteres {
+                margin-top: 0;
+            }
+            div#wkr_eingabe {
+                /*transform: translate(50%,50%);*/
+                /*top:0;*/
+                /*left: 0;*/
+                width: unset;
+
+            }
+
+            .bojenfehler {
+                width: unset;
+            }
+        }
+
+
+        .hidden {
+            display: none;
+        }
+
+        .boje_l::after, .boje_r::after,
+        .boje_l::before, .boje_r::before {
+            z-index: -20;
+        }
+        .parcours label,
+        .boje_l, .boje_r,
+        .boje_l, .boje_r
+        {
+            z-index: 50;
+        }
+    </style>
+    <script>
+        function alertme() {
+            return confirm("ACHTUNG Kein Zeit angegen. Solltes du kein Zeitrichter sein melde das der IT!") && false;
+        }
+        function checkTime() {
+            const $ = document.querySelector;
+            $.val = () => this.value;
+            if($("#Zeit_elektronisch").val() == undefined && $("#Zeit_manuell_1").val() == undefined  && $("#Zeit_manuell_2").val() == undefined) return true;
+            if($("#Zeit_elektronisch").val()== "" && $("#Zeit_manuell_1").val()== "" && $("#Zeit_manuell_2").val() == "") return alertme(); //alert
+            if($("#Zeit_elektronisch").val() == "" && $("#Zeit_manuell_1").val() != "" && $("#Zeit_manuell_2").val() == "") return alertme(); //alert
+            if($("#Zeit_elektronisch").val() == "" && $("#Zeit_manuell_1").val() == "" && $("#Zeit_manuell_2").val() != "") return alertme(); //alert
+            return true;
+        }
+    </script>
+
+    {{ form_start(form, {'attr': {'onSubmit': 'return checkTime();', 'onReset': 'return confirm(\'Sollen die Daten wirklich zurückgesetzt werden?\');'}}) }}
+
+    {% if aktuellerStarter %}
+        <div class="ast">
+            <h1> Aktueller Starter </h1>
+            <span>Name: <span>{{ aktuellerStarter.vorname }} {{ aktuellerStarter.nachname }}</span></span><br/>{#//TODO: Add Permissions#}
+            <span>Klasse: <span>{{ aktuellerStarter.klasse }}</span></span><br/>
+            <span>Startnummer: <span>{{ aktuellerStarter.startnummer }}</span></span><br/>
+            <span>Lauf: <span>{{ aktuellerStarter.lauf }}</span></span><br/>
+            <span>Zusatzgewicht: <span>{{ aktuellerStarter.zusatzgewicht }} kg</span></span><br/>{#//TODO: Add Permissions#}
+        </div>
+    {% endif %}
+
+    {% if perms.bojenrichter == 1 %}
+        {% include 'user/bojenrichter/bojenfehler.html.twig' %}
+    {% endif %}
+
+    <div class="weiters">
+        {% if perms.steg == 1 %}
+            {% include 'user/bojenrichter/steg.html.twig' %}
+        {% endif %}
+        {% if perms.t5Durchfahrt == 1 %}
+            {% include 'user/bojenrichter/t5Durchfahrt.html.twig' %}
+        {% endif %}
+        {% if perms.schikane == 1 %}
+            {% include 'user/bojenrichter/schikane.html.twig' %}
+        {% endif %}
+        {% if perms.durchreissen == 1 %}
+            {% include 'user/bojenrichter/dureissen.html.twig' %}
+        {% endif %}
+        {% if perms.zeitnahme == 1 %}
+            {% include 'user/bojenrichter/zeitnahme.html.twig' %}
+        {% endif %}
+        {% if perms.disqAnforderung == 1 %}
+            {% include 'user/bojenrichter/disqAnforderung.html.twig' %}
+        {% endif %}
+        <p> Allgemeiner Kommentar: <br> <input type='text' name='l_bemerkungen'> </p>
+
+        <button type="submit" id="submit" name="submit" value="set">Daten übermitteln</button>
+        <button type="reset">Daten zurücksetzen</button>
+        <input type="hidden" name="lauf_id" value="{{ laufId }}">
+        <input type="hidden" name="wkr_id" value="{{ wkrId }}">
+    </div>
+
+    {{ form_end(form, {'render_rest': false}) }}
+
+{% endblock %}

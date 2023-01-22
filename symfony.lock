@@ -80,6 +80,21 @@
     "friendsofphp/proxy-manager-lts": {
         "version": "v1.0.7"
     },
+    "kevinpapst/tabler-bundle": {
+        "version": "0.9"
+    },
+    "knplabs/knp-snappy-bundle": {
+        "version": "1.9",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "main",
+            "version": "1.5",
+            "ref": "c81bdcf4a9d4e7b1959071457f9608631865d381"
+        },
+        "files": [
+            "config/packages/knp_snappy.yaml"
+        ]
+    },
     "laminas/laminas-code": {
         "version": "4.5.1"
     },
@@ -116,16 +131,19 @@
     "psr/log": {
         "version": "3.0.0"
     },
-    "sensio/framework-extra-bundle": {
-        "version": "6.2",
+    "rollerworks/password-strength-bundle": {
+        "version": "v2.2.3"
+    },
+    "sentry/sentry-symfony": {
+        "version": "4.5",
         "recipe": {
-            "repo": "github.com/symfony/recipes",
-            "branch": "master",
-            "version": "5.2",
-            "ref": "fb7e19da7f013d0d422fa9bce16f5c510e27609b"
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "main",
+            "version": "4.0",
+            "ref": "9ac202e84b6fb3c276cb3d7846006e0df65272d0"
         },
         "files": [
-            "config/packages/sensio_framework_extra.yaml"
+            "config/packages/sentry.yaml"
         ]
     },
     "symfony/asset": {
@@ -330,9 +348,6 @@
     "symfony/polyfill-mbstring": {
         "version": "v1.25.0"
     },
-    "symfony/polyfill-php81": {
-        "version": "v1.25.0"
-    },
     "symfony/process": {
         "version": "v6.0.7"
     },
@@ -493,6 +508,9 @@
     },
     "symfony/yaml": {
         "version": "v6.0.3"
+    },
+    "symfonycasts/verify-email-bundle": {
+        "version": "v1.11.0"
     },
     "twig/extra-bundle": {
         "version": "v3.3.8"

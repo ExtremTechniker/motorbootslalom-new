@@ -1,0 +1,11 @@
+{% if aktuellerStarter.klasse in ["ME", "M1"] %}
+    <h1> Rückwärtstor </h1>
+    Die startende Klasse muss das Manöver "Rückwärtstor" nicht absolvieren.
+{% else %}
+    <h1>Rückwärtstor</h1>
+    <label>
+        <input type="checkbox" name="T5_Durchfahrt_nv" value="1">
+        &nbsp;
+        Einfahrt mit nicht gesamter Länge (20 P)
+    </label>
+{% endif %}

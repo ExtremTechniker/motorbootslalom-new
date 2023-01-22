@@ -1,0 +1,12 @@
+{% set stateBoje = attribute(bojen, boje) %}
+{% if stateBoje == "-1"%}
+    <div class="boje_grau"></div>
+{% elseif stateBoje == "0" %}
+    <div class="boje_irrelevant">
+        <input type="checkbox" name="{{ form[boje].vars.name }}" value="1" id="{{ form[boje].vars.id }}">
+        <label for="{{ form[boje].vars.id }}"></label>
+    </div>
+{% elseif stateBoje == "1" %}
+    <input type="checkbox" name="{{ form[boje].vars.name }}" value="1" id="{{ form[boje].vars.id }}">
+    <label for="{{ form[boje].vars.id }}"></label>
+{% endif %}

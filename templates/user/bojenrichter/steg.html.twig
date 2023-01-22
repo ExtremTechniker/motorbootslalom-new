@@ -1,0 +1,49 @@
+{% if aktuellerStarter.klasse == "ME" %}
+    <h1> Ablegen </h1>
+    In der Klasse ME wird das Ablegen <b>nicht</b> bewertet.
+    <h1> Anlegen </h1>
+    In der Klasse ME wird das Anlegen <b>nicht</b> bewertet.
+{% else %}
+    <h1> Ablegen </h1>
+    <label>
+        <input type="checkbox" name="Ablegen_Stegberuehrung" value="1">
+        &nbsp;
+        Erneute Stegberührung mit dem Sportgerät beim Ablegen (10 P)
+    </label>
+    <br>
+    <label>
+        <input type="checkbox" name="Ablegen_Rueckwaerts" value="1">
+        &nbsp;
+        Rückwärtsfahren beim Ablegemanöver (10 P)
+    </label>
+    <h1>Anlegen</h1>
+    <label>
+        <input type="checkbox" name="Anlegen_falsch" value="1">
+        &nbsp;
+        Anlegen entgegen der <a href="anlegen.html" target="_blank">Definition in der Ausschreibung</a> (5 P)
+    </label>
+    <br>
+    <label>
+        <input type="checkbox" name="Anlegen_niAnlegebereich" value="1">
+        &nbsp;
+        Sportgerät nicht im Anlegebereich zum Stillstand gebracht (5 P)
+    </label>
+    <br>
+    <label>
+        <input type="checkbox" name="Anlegen_niLeerlauf_Klampe" value="1">
+        &nbsp;
+        Schalthebel nicht im Leerlauf vor dem Belegen der Klampe (5 P)
+    </label>
+    <br>
+    <label>
+        <input type="checkbox" name="Anlegen_niLeerlauf_Quickstop" value="1">
+        &nbsp;
+        Schalthebel nicht im Leerlauf vor dem Ablegen des Quickstop (5 P)
+    </label>
+    <br>
+    <label>
+        <input type="checkbox" name="Anlegen_fKlampe" value="1">
+        &nbsp;
+        Falsches Belegen der Klampe (5 P)
+    </label>
+{% endif %}

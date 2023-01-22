@@ -1,0 +1,11 @@
+{% if not aktuellerStarter.klasse in ["M5", "M6", "M7"] %}
+    <h1> Umgang mit dem Sportgerät </h1>
+    Der Umgang mit dem Sportgerät wird erst ab der Klasse M5 bewertet.
+{% else %}
+    <h1>Umgang mit dem Sportgerät</h1>
+    <label>
+        <input type="checkbox" name="Durchreissen" value="1">
+        &nbsp;
+        Nicht ordnungsgemäßes Schalten (Durchreißen der Schaltung) (20 P)
+    </label>
+{% endif %}

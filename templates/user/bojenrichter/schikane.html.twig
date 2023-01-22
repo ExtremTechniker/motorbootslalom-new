@@ -1,0 +1,29 @@
+{% if aktuellerStarter.klasse in ["ME", "M1", "M2", "M3"] %}
+    <h1> Schikane </h1>
+    Die startende Klasse muss das Manöver "Schikane" nicht absolvieren.
+{% else %}
+    <h1>Schikane</h1>
+    <label>
+        <input type="checkbox" name="Schikane_Ueberfahren" value="1">
+        &nbsp;
+        Überfahren der Schikane (10 P)
+    </label>
+    <br>
+    <label>
+        <input type="checkbox" name="Schikane_niLeerlauf" value="1">
+        &nbsp;
+        Schaltung nicht im Leerlauf (10 P)
+    </label>
+    <br>
+    <label>
+        <input type="checkbox" name="Schikane_nhg" value="1">
+        &nbsp;
+        Rettungsring nicht mit beiden Händen über die Mittelsäule gehoben (10 P)
+    </label>
+    <br>
+    <label>
+        <input type="checkbox" name="Schikane_nva" value="1">
+        &nbsp;
+        Rettungsring nicht mit beiden Händen vollständig abgelegt (10 P)
+    </label>
+{% endif %}

@@ -1,0 +1,25 @@
+{% for i in range(low=5, high=1, step=-1) %}
+
+    <div class="tor" id="t{{ i }}">
+        <div class="boje_l">
+            {% set boje = dir~'_T'~i~'_l' %}
+            {% include 'user/bojenrichter/boje.html.twig' %}
+        </div>
+        <div class="boje_r">
+            {% set boje = dir~'_T'~i~'_r' %}
+            {% include 'user/bojenrichter/boje.html.twig' %}
+        </div>
+    </div>
+
+{% endfor %}
+<img src="{{ asset('images/schikane.png') }}" alt="schikane" width=25px height=25px id="schikane">
+<div class="tor" id="t0">
+    <div class="boje_l">
+        {% set boje = dir~'_T0_l' %}
+        {% include 'user/bojenrichter/boje.html.twig' %}
+    </div>
+    <div class="boje_r">
+        {% set boje = dir~'_T0_r' %}
+        {% include 'user/bojenrichter/boje.html.twig' %}
+    </div>
+</div>

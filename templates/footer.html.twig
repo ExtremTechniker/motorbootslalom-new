@@ -1,0 +1,10 @@
+{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+    <footer style="height: 6vh; line-height: 3vh;">
+        Eingeloggt als: {{ user.nickname }} ({{ user.email }}) <a href="{{ logout_path() }}">Logout</a>{% if is_granted('IS_IMPERSONATOR') %} <a href="{{ impersonation_exit_path() }}">Exit impersonation</a> {% endif %}<br>
+        Copyright &copy; 2018 - {{ year }} <a class="no-underline" href="/">Motorbootslalom</a> <a href="/">Startseite</a>
+    </footer>
+{% else %}
+    <footer style="height: 5vh; line-height: 5vh;">
+        Copyright &copy; 2018 - {{ year }} <a class="no-underline" href="/">Motorbootslalom</a> <a href="/">Startseite</a>
+    </footer>
+{% endif%}
