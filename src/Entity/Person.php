@@ -2,14 +2,23 @@
 
 namespace App\Entity;
 
+use App\Entity\Institutionen\Institution;
+use App\Entity\Institutionen\InstitutionClub;
+use App\Entity\Institutionen\InstitutionLand;
+use App\Entity\Institutionen\InstitutionStaat;
 use App\Repository\PersonRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use Geschlecht;
+use Doctrine\ORM\Mapping\DiscriminatorColumn;
+use Doctrine\ORM\Mapping\DiscriminatorMap;
+use Doctrine\ORM\Mapping\InheritanceType;
 
 #[ORM\Entity(repositoryClass: PersonRepository::class)]
+#[InheritanceType('SINGLE_TABLE')]
+#[DiscriminatorColumn(name: 'type', type: 'string')]
+#[DiscriminatorMap(["user" => User::class, "person" => self::class])]
 class Person
 {
     #[ORM\Id]
@@ -26,8 +35,8 @@ class Person
     #[ORM\Column(length: 255)]
     private ?string $nachname = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $email = null;
+    #[ORM\Column(type: 'string', length: 180, unique: true)]
+    private ?string $email;
 
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $geburtstag = null;

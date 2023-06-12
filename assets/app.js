@@ -11,4 +11,9 @@ import './styles/app.scss';
 // start the Stimulus application
 import './bootstrap';
 
+import $ from 'jquery';
 import 'bootstrap';
+
+$('.alert').alert()
+import { registerReactControllerComponents } from '@symfony/ux-react';
+registerReactControllerComponents(require.context('./react/controllers', true, /\.([jt])sx?$/));

@@ -1,24 +1,24 @@
+{% import "user/bojenrichter/bojen.html.twig" as bojenmacro %}
+{% import "user/bojenrichter/boje.html.twig" as bojemacro %}
 
 <div class="bojenfehler">
     <h1> Bojenfehler </h1>
     <div id="parcours">
         <div class="parcours" id="hinfahrt">
-            {% set dir = 'H' %}
-            {% include 'user/bojenrichter/bojen.html.twig' %}
+            {{ bojenmacro.parcours('H', bojen, form) }}
             <p id="beschriftung"> Hinfahrt </p>
         </div>
         <div class="parcours" id="rueckfahrt">
-            <div class="s_boje" id="sb_l">
+            {#<div class="s_boje" id="sb_l">
                 {% set boje = "SB_l" %}
-                {% include 'user/bojenrichter/boje.html.twig' %}
+                {{ bojemacro.boje(form[boje], bojen) }}
             </div>
             <div class="s_boje" id="sb_r">
                 {% set boje = "SB_r" %}
-                {% include 'user/bojenrichter/boje.html.twig' %}
-            </div>
-            {% set dir = 'R' %}
-            {% include 'user/bojenrichter/bojen.html.twig' %}
-            <p id="beschriftung"> Rückfahrt </p>
+                {{ bojemacro.boje(form[boje], bojen) }}
+            </div>#}
+            {{ bojenmacro.parcours('R', bojen, form) }}
+            <p id="beschriftung"> Rückfahrt </p>x
         </div>
     </div>
 </div>

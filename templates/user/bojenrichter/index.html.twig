@@ -6,4 +6,9 @@
 
     <a href="{{ path('bojenrichter_eingabe') }}">Eingabe</a>
 
+    <div {{ react_component('Bojenrichter/Bojenrichter', {perms: perms, bojenStates: bojenStates, aktuellerStarter: aktuellerStarter}) }}>
+        Loading... <i class="fas fa-cog fa-spin fa-3x"></i>
+    </div>
+
+
 {% endblock %}

@@ -1,0 +1,106 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User{% endblock %}
+
+{% block body %}
+    <h1>User</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ user.id }}</td>
+            </tr>
+            <tr>
+                <th>Vorname</th>
+                <td>{{ user.vorname }}</td>
+            </tr>
+            <tr>
+                <th>Nachname</th>
+                <td>{{ user.nachname }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ user.email }}</td>
+            </tr>
+            <tr>
+                <th>Geburtstag</th>
+                <td>{{ user.geburtstag ? user.geburtstag|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Geschlecht</th>
+                <td>{{ user.geschlecht }}</td>
+            </tr>
+            <tr>
+                <th>Telefon</th>
+                <td>{{ user.telefon }}</td>
+            </tr>
+            <tr>
+                <th>TelefonMobil</th>
+                <td>{{ user.telefonMobil }}</td>
+            </tr>
+            <tr>
+                <th>Strasse</th>
+                <td>{{ user.strasse }}</td>
+            </tr>
+            <tr>
+                <th>Hausnummer</th>
+                <td>{{ user.hausnummer }}</td>
+            </tr>
+            <tr>
+                <th>Plz</th>
+                <td>{{ user.plz }}</td>
+            </tr>
+            <tr>
+                <th>Ort</th>
+                <td>{{ user.ort }}</td>
+            </tr>
+            <tr>
+                <th>Pilot</th>
+                <td>{{ user.pilot ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>MbsLizenz</th>
+                <td>{{ user.mbsLizenz }}</td>
+            </tr>
+            <tr>
+                <th>Ms11Lizenz</th>
+                <td>{{ user.ms11Lizenz }}</td>
+            </tr>
+            <tr>
+                <th>RennLizenz</th>
+                <td>{{ user.rennLizenz }}</td>
+            </tr>
+            <tr>
+                <th>Username</th>
+                <td>{{ user.username }}</td>
+            </tr>
+            <tr>
+                <th>Roles</th>
+                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+            </tr>
+            <tr>
+                <th>Password</th>
+                <td>{{ user.password }}</td>
+            </tr>
+            <tr>
+                <th>Verified</th>
+                <td>{{ user.verified ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>RegisterIpAddress</th>
+                <td>{{ user.registerIpAddress }}</td>
+            </tr>
+            <tr>
+                <th>RegisterHostname</th>
+                <td>{{ user.registerHostname }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_admin_user_index') }}">back to list</a>
+
+    <a href="{{ path('app_admin_user_edit', {'id': user.id}) }}">edit</a>
+
+    {{ include('admin/user/_delete_form.html.twig') }}
+{% endblock %}

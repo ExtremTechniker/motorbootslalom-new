@@ -2,7 +2,7 @@
 
 namespace App\Repository;
 
-use App\Entity\Ebene;
+use App\Entity\Institutionen\Ebene;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 

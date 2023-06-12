@@ -1,0 +1,82 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Person{% endblock %}
+
+{% block body %}
+    <h1>Person</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ person.id }}</td>
+            </tr>
+            <tr>
+                <th>Vorname</th>
+                <td>{{ person.vorname }}</td>
+            </tr>
+            <tr>
+                <th>Nachname</th>
+                <td>{{ person.nachname }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ person.email }}</td>
+            </tr>
+            <tr>
+                <th>Geburtstag</th>
+                <td>{{ person.geburtstag ? person.geburtstag|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Geschlecht</th>
+                <td>{{ person.geschlecht }}</td>
+            </tr>
+            <tr>
+                <th>Telefon</th>
+                <td>{{ person.telefon }}</td>
+            </tr>
+            <tr>
+                <th>TelefonMobil</th>
+                <td>{{ person.telefonMobil }}</td>
+            </tr>
+            <tr>
+                <th>Strasse</th>
+                <td>{{ person.strasse }}</td>
+            </tr>
+            <tr>
+                <th>Hausnummer</th>
+                <td>{{ person.hausnummer }}</td>
+            </tr>
+            <tr>
+                <th>Plz</th>
+                <td>{{ person.plz }}</td>
+            </tr>
+            <tr>
+                <th>Ort</th>
+                <td>{{ person.ort }}</td>
+            </tr>
+            <tr>
+                <th>Pilot</th>
+                <td>{{ person.pilot ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>MbsLizenz</th>
+                <td>{{ person.mbsLizenz }}</td>
+            </tr>
+            <tr>
+                <th>Ms11Lizenz</th>
+                <td>{{ person.ms11Lizenz }}</td>
+            </tr>
+            <tr>
+                <th>RennLizenz</th>
+                <td>{{ person.rennLizenz }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_person_index') }}">back to list</a>
+
+    <a href="{{ path('app_person_edit', {'id': person.id}) }}">edit</a>
+
+    {{ include('person/_delete_form.html.twig') }}
+{% endblock %}

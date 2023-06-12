@@ -1,25 +1,26 @@
-{% for i in range(low=5, high=1, step=-1) %}
+{% import 'user/bojenrichter/boje.html.twig' as boje_macro %}
 
-    <div class="tor" id="t{{ i }}">
+{% macro parcours(richtung, bojenStates, form) %}
+    {% import _self as macros %}
+    {% for i in range(low=5, high=1, step=-1) %}
+        {{ macros.tor(richtung, i, bojenStates, form) }}
+    {% endfor %}
+    <img src="{{ asset('images/schikane.png') }}" alt="schikane" width=25px height=25px id="schikane">
+    {{ macros.tor(richtung, 0, bojenStates, form) }}
+{% endmacro %}
+
+{% macro tor(richtung, torId, bojenStates, form) %}
+    {{ dump(form) }}
+    {#
+    <div class="tor" id="t{{ torId }}">
         <div class="boje_l">
-            {% set boje = dir~'_T'~i~'_l' %}
-            {% include 'user/bojenrichter/boje.html.twig' %}
+            {% set boje = richtung~'_T'~torId~'_l' %}
+            {{ boje_macro.boje(form[boje], bojenStates) }}
         </div>
         <div class="boje_r">
-            {% set boje = dir~'_T'~i~'_r' %}
-            {% include 'user/bojenrichter/boje.html.twig' %}
+            {% set boje = richtung~'_T'~torId~'_r' %}
+            {{ boje_macro.boje(form[boje], bojenStates) }}
         </div>
-    </div>
+    </div>#}
+{% endmacro %}
 
-{% endfor %}
-<img src="{{ asset('images/schikane.png') }}" alt="schikane" width=25px height=25px id="schikane">
-<div class="tor" id="t0">
-    <div class="boje_l">
-        {% set boje = dir~'_T0_l' %}
-        {% include 'user/bojenrichter/boje.html.twig' %}
-    </div>
-    <div class="boje_r">
-        {% set boje = dir~'_T0_r' %}
-        {% include 'user/bojenrichter/boje.html.twig' %}
-    </div>
-</div>

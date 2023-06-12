@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Entity;
+
 enum Geschlecht
 {
     case M;

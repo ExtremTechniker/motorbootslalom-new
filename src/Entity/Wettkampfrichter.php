@@ -11,54 +11,51 @@ class Wettkampfrichter
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private $id;
+    private ?int $id;
 
-    #[ORM\Column(type: 'integer')]
-    private $person_id;
+    #[ORM\Column]
+    #[ORM\ManyToOne(targetEntity: User::class)]
+    private ?User $user;
 
-    #[ORM\Column(type: 'integer')]
-    private $veranstaltung_id;
+    #[ORM\Column]
+    #[ORM\ManyToOne(targetEntity: Veranstaltung::class)]
+    private ?Veranstaltung $veranstaltung;
 
     #[ORM\Column(type: 'json')]
-    private $roles = [];
+    private array $positionen = [];
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getPersonId(): ?int
+    public function getUser(): ?User
     {
-        return $this->person_id;
+        return $this->user;
     }
 
-    public function setPersonId(int $person_id): self
+    public function setUser(?User $user): void
     {
-        $this->person_id = $person_id;
-
-        return $this;
+        $this->user = $user;
     }
 
-    public function getVeranstaltungId(): ?int
+    public function getVeranstaltung(): ?Veranstaltung
     {
-        return $this->veranstaltung_id;
+        return $this->veranstaltung;
     }
 
-    public function setVeranstaltungId(int $veranstaltung_id): self
+    public function setVeranstaltung(?Veranstaltung $veranstaltung): void
     {
-        $this->veranstaltung_id = $veranstaltung_id;
-
-        return $this;
+        $this->veranstaltung = $veranstaltung;
+    }
+    public function getPositionen(): ?array
+    {
+        return $this->positionen;
     }
 
-    public function getRoles(): ?array
+    public function setPositionen(array $positionen): self
     {
-        return $this->roles;
-    }
-
-    public function setRoles(array $roles): self
-    {
-        $this->roles = $roles;
+        $this->positionen = $positionen;
 
         return $this;
     }

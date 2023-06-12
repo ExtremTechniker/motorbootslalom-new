@@ -1,12 +1,26 @@
-{% set stateBoje = attribute(bojen, boje) %}
-{% if stateBoje == "-1"%}
+{% macro boje(boje, bojenStates) %}
+    {% set stateBoje = attribute(bojenStates, boje) %}
+    {% if stateBoje == "-1" %}
+        {{ _self.boje_grau(boje) }}
+    {% elseif stateBoje == "0" %}
+        {{ _self.boje_irrelevant(boje) }}
+    {% elseif stateBoje == "1" %}
+        {{ _self.boje_normal(boje) }}
+    {% endif %}
+{% endmacro %}
+
+{% macro boje_grau(boje) %}
     <div class="boje_grau"></div>
-{% elseif stateBoje == "0" %}
+{% endmacro %}
+
+{% macro boje_irrelevant(boje) %}
     <div class="boje_irrelevant">
-        <input type="checkbox" name="{{ form[boje].vars.name }}" value="1" id="{{ form[boje].vars.id }}">
-        <label for="{{ form[boje].vars.id }}"></label>
+        <input type="checkbox" name="{{ boje.vars.full_name }}" value="1" id="{{ boje.vars.id }}">
+        <label for="{{ boje.vars.id }}"></label>
     </div>
-{% elseif stateBoje == "1" %}
-    <input type="checkbox" name="{{ form[boje].vars.name }}" value="1" id="{{ form[boje].vars.id }}">
-    <label for="{{ form[boje].vars.id }}"></label>
-{% endif %}
+{% endmacro %}
+
+{% macro boje_normal(boje) %}
+    <input type="checkbox" name="{{ boje.vars.full_name }}" value="1" id="{{ boje.vars.id }}">
+    <label for="{{ boje.vars.id }}"></label>
+{% endmacro %}

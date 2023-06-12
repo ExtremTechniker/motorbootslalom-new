@@ -16,6 +16,18 @@
 <body>
 {% include 'header.html.twig'%}
 <main class="container-fluid pt-3">
+    <div class="alert-container">
+        {% for level,messages in app.session.flashbag.all() %}
+            {% for message in messages %}
+                <div class="alert alert-{{ level }} alert-dismissible fade show" role="alert">
+                    {{ message|alertLink}}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            {% endfor %}
+        {% endfor %}
+    </div>
     {% block body %}{% endblock %}
 </main>
 {% include 'footer.html.twig'%}

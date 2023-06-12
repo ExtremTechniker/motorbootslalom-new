@@ -1,5 +1,6 @@
 <h1>Disqualifikation</h1>
 <p class="text-danger text-bold">ACHTUNG! Nur ein Disqualifikations-Grund angeben!</p>
 
-{{ form_row(form.disq) }}
+{{ form_row(form.disq, {'attr': {'class': 'dualListBox'}}) }}
+
 {{ form_row(form["da_bemerkung"]) }}

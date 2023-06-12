@@ -1,5 +1,10 @@
 {% extends 'base.html.twig' %}
 
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('dualListBox') }}
+{% endblock %}
+
 {% block body %}
     <style>
         .parcours input[type=checkbox] {

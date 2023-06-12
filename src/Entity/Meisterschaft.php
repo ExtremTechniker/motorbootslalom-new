@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use App\Entity\Institutionen\Ebene;
+use App\Entity\Institutionen\Institution;
 use App\Repository\MeisterschaftRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -33,9 +35,6 @@ class Meisterschaft
     private ?Ebene $ebene = null;
 
     #[ORM\Column]
-    private ?int $veranstaltungen = null;
-
-    #[ORM\Column]
     private ?int $streichresultate = null;
 
     #[ORM\Column(nullable: true)]
@@ -65,9 +64,16 @@ class Meisterschaft
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $Unterschreibende = null;
 
+    #[ORM\ManyToMany(targetEntity: Veranstaltung::class, inversedBy: 'meisterschafen')]
+    private Collection $veranstaltungen;
+
+    #[ORM\OneToMany(mappedBy: 'meisterschaft', targetEntity: StarterMeisterschaft::class, orphanRemoval: true)]
+    private Collection $starterMeisterschaft;
+
     public function __construct()
     {
-        $this->veranstaltungs = new ArrayCollection();
+        $this->veranstaltungen = new ArrayCollection();
+        $this->starterMeisterschaft = new ArrayCollection();
     }
 
 
@@ -136,17 +142,6 @@ class Meisterschaft
         return $this;
     }
 
-    public function getVeranstaltungen(): ?int
-    {
-        return $this->veranstaltungen;
-    }
-
-    public function setVeranstaltungen(int $veranstaltungen): self
-    {
-        $this->veranstaltungen = $veranstaltungen;
-
-        return $this;
-    }
 
     public function getStreichresultate(): ?int
     {
@@ -264,6 +259,60 @@ class Meisterschaft
     public function setUnterschreibende(?string $Unterschreibende): self
     {
         $this->Unterschreibende = $Unterschreibende;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Veranstaltung>
+     */
+    public function getVeranstaltungen(): Collection
+    {
+        return $this->veranstaltungen;
+    }
+
+    public function addVeranstaltungen(Veranstaltung $veranstaltungen): self
+    {
+        if (!$this->veranstaltungen->contains($veranstaltungen)) {
+            $this->veranstaltungen->add($veranstaltungen);
+        }
+
+        return $this;
+    }
+
+    public function removeVeranstaltungen(Veranstaltung $veranstaltungen): self
+    {
+        $this->veranstaltungen->removeElement($veranstaltungen);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, StarterMeisterschaft>
+     */
+    public function getStarterMeisterschaft(): Collection
+    {
+        return $this->starterMeisterschaft;
+    }
+
+    public function addStarterMeisterschaft(StarterMeisterschaft $starterMeisterschaft): self
+    {
+        if (!$this->starterMeisterschaft->contains($starterMeisterschaft)) {
+            $this->starterMeisterschaft->add($starterMeisterschaft);
+            $starterMeisterschaft->setMeisterschaft($this);
+        }
+
+        return $this;
+    }
+
+    public function removeStarterMeisterschaft(StarterMeisterschaft $starterMeisterschaft): self
+    {
+        if ($this->starterMeisterschaft->removeElement($starterMeisterschaft)) {
+            // set the owning side to null (unless already changed)
+            if ($starterMeisterschaft->getMeisterschaft() === $this) {
+                $starterMeisterschaft->setMeisterschaft(null);
+            }
+        }
 
         return $this;
     }

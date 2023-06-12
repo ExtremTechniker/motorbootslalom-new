@@ -15,7 +15,7 @@ class LoginController extends AbstractMotorbootslalomController
     protected string $title = "Login";
 
     /**
-     * @Route(name="login", path="/")
+     * @Route(name="app_login", path="/")
      */
     public function Login(Request $request, AuthenticationUtils $authenticationUtils): Response
     {
@@ -25,11 +25,11 @@ class LoginController extends AbstractMotorbootslalomController
 
         // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
-        /** @var ?User $user */
-        $user = $this->getUser();
-        if($user != null) {
+
+        if ($this->isGranted("IS_AUTHENTICATED_FULLY")) {
             return $this->redirectToRoute("app_user_user_index");
         }
+
 
         return $this->render('login.html.twig', [
             'last_username' => $lastUsername,

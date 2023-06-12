@@ -2,12 +2,10 @@
 
 namespace App\Repository;
 
-use App\Entity\Institution;
+use App\Entity\Institutionen\Institution;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\ORM\AbstractQuery;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
-use function Doctrine\ORM\QueryBuilder;
 
 /**
  * @extends ServiceEntityRepository<Institution>

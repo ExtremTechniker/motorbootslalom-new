@@ -6,6 +6,8 @@ namespace App\Controller\User;
 use App\Controller\AbstractMotorbootslalomController;
 use App\Entity\User;
 use App\Form\SelectInstitutionType;
+use App\Repository\PersonRepository;
+use App\Repository\UserRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -20,11 +22,12 @@ class UserController extends AbstractMotorbootslalomController
     {
         /* @var $user User */
         $user = $this->getUser();
-        if($user->getPerson()->getInstitutionen()->count() == 0) {
-            return $this->redirectToRoute("app_user_user_selectinstitutionen");
+        if($user->getInstitutionen()->count() != 0) {
+            $this->addFlash("info", "Test https://google.de app_login app_login{} app_login{test=2}");
+            $this->addFlash("info", "app_login app_login{} app_login{test=2}");
+            $this->addFlash("info", "Test app_login{}[Login]");
+            //return $this->redirectToRoute("app_user_user_selectinstitutionen");
         }
-
-
 
 
         return $this->render("user/index.html.twig");
@@ -32,14 +35,17 @@ class UserController extends AbstractMotorbootslalomController
 
     #[Route("/user/selectInstitutionen", name: "app_user_user_selectinstitutionen")]
     #[IsGranted("ROLE_USER")]
-    public function selectInstitutionen(Request $request): Response
+    public function selectInstitutionen(Request $request, PersonRepository $personRepository): Response
     {
-
-        $form = $this->createForm(SelectInstitutionType::class);
+        /** @var User $user */
+        $user = $this->getUser();
+        $person = $user->getPerson();
+        $form = $this->createForm(SelectInstitutionType::class, $person);
 
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()) {
-            // TODO: Stuff
+            $personRepository->save($person, true);
+            return $this->redirectToRoute('app_user_user_index');
         }
 
         return $this->render("user/selectinstitutioen.html.twig", [

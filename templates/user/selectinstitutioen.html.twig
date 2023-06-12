@@ -7,6 +7,12 @@
 
 
 {% block body %}
-    {{ form(form) }}
+    {{ form_start(form) }}
+
+        {{ form_row(form.institutionen) }}
+
+        <button type="submit" class="btn btn-primary">Bestätigen</button>
+
+    {{ form_end(form) }}
 {% endblock %}
 

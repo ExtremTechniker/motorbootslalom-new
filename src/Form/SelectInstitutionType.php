@@ -2,8 +2,8 @@
 
 namespace App\Form;
 
-use App\Entity\Institution;
-use App\Entity\User;
+use App\Entity\Institutionen\Institution;
+use App\Entity\Person;
 use App\Repository\InstitutionRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -38,7 +38,7 @@ class SelectInstitutionType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            User::class
+            Person::class
         ]);
     }
 }

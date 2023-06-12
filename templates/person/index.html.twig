@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Person index{% endblock %}
+
+{% block body %}
+    <h1>Person index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Vorname</th>
+                <th>Nachname</th>
+                <th>Email</th>
+                <th>Geburtstag</th>
+                <th>Geschlecht</th>
+                <th>Telefon</th>
+                <th>TelefonMobil</th>
+                <th>Strasse</th>
+                <th>Hausnummer</th>
+                <th>Plz</th>
+                <th>Ort</th>
+                <th>Pilot</th>
+                <th>MbsLizenz</th>
+                <th>Ms11Lizenz</th>
+                <th>RennLizenz</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for person in people %}
+            <tr>
+                <td>{{ person.id }}</td>
+                <td>{{ person.vorname }}</td>
+                <td>{{ person.nachname }}</td>
+                <td>{{ person.email }}</td>
+                <td>{{ person.geburtstag ? person.geburtstag|date('Y-m-d') : '' }}</td>
+                <td>{{ person.geschlecht }}</td>
+                <td>{{ person.telefon }}</td>
+                <td>{{ person.telefonMobil }}</td>
+                <td>{{ person.strasse }}</td>
+                <td>{{ person.hausnummer }}</td>
+                <td>{{ person.plz }}</td>
+                <td>{{ person.ort }}</td>
+                <td>{{ person.pilot ? 'Yes' : 'No' }}</td>
+                <td>{{ person.mbsLizenz }}</td>
+                <td>{{ person.ms11Lizenz }}</td>
+                <td>{{ person.rennLizenz }}</td>
+                <td>
+                    <a href="{{ path('app_person_show', {'id': person.id}) }}">show</a>
+                    <a href="{{ path('app_person_edit', {'id': person.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="17">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_person_new') }}">Create new</a>
+{% endblock %}
